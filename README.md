@@ -72,7 +72,7 @@ Este ciclo, y los sucesivos (Módulos A, B y C), están documentados commit por 
 | Líneas | 98% | ≥ 85% |
 | Branches | 92% | ≥ 70% |
 
-![Cobertura JaCoCo](evidence/jacoco-final.png)
+![Cobertura JaCoCo](docs/evidence/jacoco-final.png)
 
 *Nota: la cobertura se construyó de forma incremental junto con cada ciclo TDD de los Módulos A, B y C, en vez de agregarse al final sobre una implementación ya completa. Por eso no existe una captura "antes" representativa: cada test se escribió antes que su implementación correspondiente, y la cobertura creció caso por caso.*
 
@@ -81,8 +81,6 @@ Este ciclo, y los sucesivos (Módulos A, B y C), están documentados commit por 
 **Estado: no ejecutado.**
 
 Se intentó levantar SonarQube localmente con Docker según lo indicado en el taller. Al verificar el entorno, se encontró que ni Docker Desktop ni WSL2 estaban instalados en la máquina de desarrollo. Instalar WSL2 requiere reiniciar el sistema operativo, y dado el tiempo disponible antes de la entrega, se priorizó completar y verificar el código funcional (Módulos A, B, C), la cobertura de JaCoCo (98%) y esta documentación, en vez de arriesgar tiempo en una instalación con reinicio de por medio.
-
-Queda pendiente como mejora futura: instalar Docker Desktop (con soporte WSL2), levantar la imagen `sonarqube:26.9.0.129388-community`, y ejecutar `mvn clean verify sonar:sonar` para obtener el dashboard de Quality Gate.
 
 ## 6. Pull Requests
 
@@ -111,18 +109,4 @@ El reporte de JaCoCo mostró un 92% de cobertura de branches (ligeramente por de
 
 No aplica: el análisis de SonarQube no pudo ejecutarse en este entorno por falta de Docker/WSL2 instalados, según se documenta en la sección 5.
 
-## Cómo ejecutar el proyecto
 
-```bash
-# Compilar
-mvn clean package
-
-# Ejecutar pruebas
-mvn test
-
-# Ejecutar pruebas + verificar cobertura (falla si < 85%)
-mvn clean verify
-
-# Ver reporte de cobertura
-# Abrir target/site/jacoco/index.html en el navegador
-```
