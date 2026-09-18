@@ -43,4 +43,12 @@ public class BowlingGameTest {
         for (int i = 0; i < 10; i++) game.roll(0);
         assertThrows(IllegalStateException.class, () -> game.roll(0));
     }
+
+    @Test
+    @DisplayName("roll(10) marca el frame como strike")
+    void rollTenPins_marksStrike() {
+        BowlingGame game = new BowlingGame();
+        game.roll(10);
+        assertTrue(game.getFrames().get(0).isStrike());
+    }
 }
