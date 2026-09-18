@@ -21,6 +21,9 @@ public class BowlingGame {
      *  Lanza IllegalStateException si el juego ya terminó. */
     public void roll(int pins) {
         frames.add(new Frame(pins));
+        if (pins < 0) {
+            throw new IllegalArgumentException("Los pines no pueden ser negativos");
+        }
     }
 
     /** Puntaje total. Lanza IllegalStateException si el juego no está completo. */
