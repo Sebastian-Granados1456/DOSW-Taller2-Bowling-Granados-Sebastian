@@ -20,4 +20,11 @@ public class BowlingGameTest {
         BowlingGame game = new BowlingGame();
         assertThrows(IllegalArgumentException.class, () -> game.roll(-1));
     }
+
+    @Test
+    @DisplayName("roll(11) lanza IllegalArgumentException")
+    void rollTooManyPins_throwsException() {
+        BowlingGame game = new BowlingGame();
+        assertThrows(IllegalArgumentException.class, () -> game.roll(11));
+    }
 }
