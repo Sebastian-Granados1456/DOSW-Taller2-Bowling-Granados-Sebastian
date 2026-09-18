@@ -13,4 +13,11 @@ public class BowlingGameTest {
         assertDoesNotThrow(() -> game.roll(0));
         assertEquals(0, game.getFrames().get(0).getPins());
     }
+
+    @Test
+    @DisplayName("roll(-1) lanza IllegalArgumentException")
+    void rollNegativePins_throwsException() {
+        BowlingGame game = new BowlingGame();
+        assertThrows(IllegalArgumentException.class, () -> game.roll(-1));
+    }
 }
