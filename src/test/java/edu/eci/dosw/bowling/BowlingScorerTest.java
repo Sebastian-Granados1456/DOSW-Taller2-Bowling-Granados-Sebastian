@@ -42,4 +42,17 @@ class BowlingScorerTest {
         BowlingScorer scorer = new BowlingScorer();
         assertEquals(18, scorer.calculate(game.getFrames()));
     }
+
+    @Test
+    @DisplayName("Strike en frame 1 - suma los dos tiros siguientes como bono")
+    void strikeInFirstFrame_addsBonusFromNextTwoRolls() {
+        BowlingGame game = new BowlingGame();
+        game.roll(10);
+        game.roll(4);
+        game.roll(3);
+        for (int i = 0; i < 8; i++) { game.roll(0); game.roll(0); }
+
+        BowlingScorer scorer = new BowlingScorer();
+        assertEquals(24, scorer.calculate(game.getFrames()));
+    }
 }
