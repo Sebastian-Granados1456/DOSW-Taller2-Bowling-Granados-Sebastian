@@ -46,4 +46,8 @@ public class Frame {
     public int getFirstRollValue() {
         return firstRoll;
     }
+
+    public int getSecondRollValue() {
+        return secondRoll != null ? secondRoll : 0;
+    }
 }

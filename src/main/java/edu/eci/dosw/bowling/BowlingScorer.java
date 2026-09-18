@@ -8,12 +8,16 @@ public class BowlingScorer {
         int total = 0;
         for (int i = 0; i < frames.size(); i++) {
             Frame frame = frames.get(i);
+            boolean isLastFrame = i == frames.size() - 1;
+
             total += frame.getPins();
 
-            if (frame.isStrike() && i + 1 < frames.size()) {
-                total += strikeBonus(frames, i);
-            } else if (frame.isSpare() && i + 1 < frames.size()) {
-                total += frames.get(i + 1).getFirstRollValue();
+            if (!isLastFrame) {
+                if (frame.isStrike()) {
+                    total += strikeBonus(frames, i);
+                } else if (frame.isSpare()) {
+                    total += frames.get(i + 1).getFirstRollValue();
+                }
             }
         }
         return total;
@@ -21,8 +25,13 @@ public class BowlingScorer {
 
     private int strikeBonus(List<Frame> frames, int i) {
         Frame next = frames.get(i + 1);
-        if (next.getFirstRollValue() == 10 && i + 2 < frames.size()) {
+        boolean nextIsLastFrame = (i + 1) == frames.size() - 1;
+
+        if (next.getFirstRollValue() == 10 && !nextIsLastFrame && i + 2 < frames.size()) {
             return 10 + frames.get(i + 2).getFirstRollValue();
+        }
+        if (next.getFirstRollValue() == 10 && nextIsLastFrame) {
+            return 10 + next.getSecondRollValue();
         }
         return next.getPins();
     }
