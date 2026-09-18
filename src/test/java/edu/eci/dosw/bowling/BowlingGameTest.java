@@ -35,4 +35,12 @@ public class BowlingGameTest {
         game.roll(7);
         assertThrows(IllegalArgumentException.class, () -> game.roll(6));
     }
+
+    @Test
+    @DisplayName("roll() despues de terminar el juego lanza IllegalStateException")
+    void rollAfterGameComplete_throwsException() {
+        BowlingGame game = new BowlingGame();
+        for (int i = 0; i < 10; i++) game.roll(0);
+        assertThrows(IllegalStateException.class, () -> game.roll(0));
+    }
 }
