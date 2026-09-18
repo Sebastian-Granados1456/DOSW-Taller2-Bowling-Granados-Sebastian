@@ -55,4 +55,18 @@ class BowlingScorerTest {
         BowlingScorer scorer = new BowlingScorer();
         assertEquals(24, scorer.calculate(game.getFrames()));
     }
+
+    @Test
+    @DisplayName("Dos strikes consecutivos - el bono del primero se calcula correctamente")
+    void twoConsecutiveStrikes_bonusCalculatedCorrectly() {
+        BowlingGame game = new BowlingGame();
+        game.roll(10);
+        game.roll(10);
+        game.roll(5);
+        game.roll(3);
+        for (int i = 0; i < 7; i++) { game.roll(0); game.roll(0); }
+
+        BowlingScorer scorer = new BowlingScorer();
+        assertEquals(51, scorer.calculate(game.getFrames()));
+    }
 }
