@@ -52,7 +52,7 @@ public class BowlingGame {
         if (frames.size() < 10) return false;
         Frame tenth = frames.get(9);
         return tenth.hasSecondRoll() || tenth.isStrike();
-    }git
+    }
 
     public List<Frame> getFrames() { return List.copyOf(frames); }
 }

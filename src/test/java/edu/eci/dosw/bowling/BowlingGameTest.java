@@ -60,4 +60,16 @@ public class BowlingGameTest {
         game.roll(5);
         assertTrue(game.getFrames().get(0).isSpare());
     }
+
+    @Test
+    @DisplayName("Frame 10 con strike acepta hasta 3 tiros sin lanzar excepcion")
+    void tenthFrameWithStrike_acceptsThreeRolls() {
+        BowlingGame game = new BowlingGame();
+        for (int i = 0; i < 18; i++) game.roll(0); // frames 1-9 completos (0+0 x9 = 18 rolls)
+        assertDoesNotThrow(() -> {
+            game.roll(10);
+            game.roll(10);
+            game.roll(10);
+        });
+    }
 }
