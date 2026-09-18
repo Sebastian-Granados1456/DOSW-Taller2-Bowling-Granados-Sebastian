@@ -81,4 +81,26 @@ public class BowlingGameTest {
         assertThrows(IllegalStateException.class, game::score);
     }
 
+    @Test
+    @DisplayName("isComplete() al inicio del juego es false")
+    void isComplete_atStart_isFalse() {
+        BowlingGame game = new BowlingGame();
+        assertFalse(game.isComplete());
+    }
+
+    @Test
+    @DisplayName("isComplete() despues de 9 frames completos es false")
+    void isComplete_after9Frames_isFalse() {
+        BowlingGame game = new BowlingGame();
+        for (int i = 0; i < 9; i++) { game.roll(3); game.roll(4); }
+        assertFalse(game.isComplete());
+    }
+
+    @Test
+    @DisplayName("10 frames normales completos es true")
+    void isComplete_after10NormalFrames_isTrue() {
+        BowlingGame game = new BowlingGame();
+        for (int i = 0; i < 10; i++) { game.roll(3); game.roll(4); }
+        assertTrue(game.isComplete());
+    }
 }
