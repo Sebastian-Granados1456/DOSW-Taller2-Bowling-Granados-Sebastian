@@ -11,6 +11,11 @@ public class Frame {
         this.pins = pins;
 
     }
+
+    public boolean isStrike() {
+        return pins == 10;
+    }
+
     public int getPins(){
         return pins;
     }
