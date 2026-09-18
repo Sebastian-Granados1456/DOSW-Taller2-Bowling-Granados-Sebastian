@@ -28,4 +28,18 @@ class BowlingScorerTest {
         BowlingScorer scorer = new BowlingScorer();
         assertEquals(70, scorer.calculate(game.getFrames()));
     }
+
+    @Test
+    @DisplayName("Spare en frame 1 + primer tiro del frame 2 = 3 - frame 1 puntua 13")
+    void spareInFirstFrame_addsBonusFromNextRoll() {
+        BowlingGame game = new BowlingGame();
+        game.roll(5);
+        game.roll(5);
+        game.roll(3);
+        game.roll(2);
+        for (int i = 0; i < 8; i++) { game.roll(0); game.roll(0); }
+
+        BowlingScorer scorer = new BowlingScorer();
+        assertEquals(18, scorer.calculate(game.getFrames()));
+    }
 }
