@@ -81,4 +81,56 @@ public class BowlingGameTest {
         assertThrows(IllegalStateException.class, game::score);
     }
 
+    @Test
+    @DisplayName("isComplete() al inicio del juego es false")
+    void isComplete_atStart_isFalse() {
+        BowlingGame game = new BowlingGame();
+        assertFalse(game.isComplete());
+    }
+
+    @Test
+    @DisplayName("isComplete() despues de 9 frames completos es false")
+    void isComplete_after9Frames_isFalse() {
+        BowlingGame game = new BowlingGame();
+        for (int i = 0; i < 9; i++) { game.roll(3); game.roll(4); }
+        assertFalse(game.isComplete());
+    }
+
+    @Test
+    @DisplayName("10 frames normales completos es true")
+    void isComplete_after10NormalFrames_isTrue() {
+        BowlingGame game = new BowlingGame();
+        for (int i = 0; i < 10; i++) { game.roll(3); game.roll(4); }
+        assertTrue(game.isComplete());
+    }
+
+    @Test
+    @DisplayName("Spare en frame 10 con tiro bonus ejecutado es true")
+    void isComplete_tenthFrameSpareWithBonus_isTrue() {
+        BowlingGame game = new BowlingGame();
+        for (int i = 0; i < 9; i++) { game.roll(3); game.roll(4); }
+        game.roll(5);
+        game.roll(5); // spare frame 10
+        game.roll(7); // tiro bonus
+        assertTrue(game.isComplete());
+    }
+
+    @Test
+    @DisplayName("Strike en frame 10 con 2 tiros bonus ejecutados es true")
+    void isComplete_tenthFrameStrikeWithTwoBonusRolls_isTrue() {
+        BowlingGame game = new BowlingGame();
+        for (int i = 0; i < 9; i++) { game.roll(3); game.roll(4); }
+        game.roll(10); // strike frame 10
+        game.roll(5);
+        game.roll(4);
+        assertTrue(game.isComplete());
+    }
+
+    @Test
+    @DisplayName("Juego perfecto tras el 12avo strike es true")
+    void isComplete_afterPerfectGame_isTrue() {
+        BowlingGame game = new BowlingGame();
+        for (int i = 0; i < 12; i++) game.roll(10);
+        assertTrue(game.isComplete());
+    }
 }
