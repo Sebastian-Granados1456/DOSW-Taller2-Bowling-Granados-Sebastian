@@ -27,10 +27,15 @@ public class BowlingGame {
         if (pins < 0 || pins > 10) {
             throw new IllegalArgumentException("Los pines deben estar entre 0 y 10");
         }
+
         if (!frames.isEmpty()) {
             Frame last = frames.get(frames.size() - 1);
-            if (last.getPins() + pins > 10 && last.getPins() < 10) {
-                throw new IllegalArgumentException("La suma del frame no puede superar 10");
+            if (!last.isStrike() && !last.hasSecondRoll()) {
+                if (last.getPins() + pins > 10) {
+                    throw new IllegalArgumentException("La suma del frame no puede superar 10");
+                }
+                last.addSecondRoll(pins);
+                return;
             }
         }
         frames.add(new Frame(pins));
@@ -44,8 +49,10 @@ public class BowlingGame {
 
     /** true cuando los 10 frames han sido completados. */
     public boolean isComplete() {
-        return frames.size() >= 10;
-    }
+        if (frames.size() < 10) return false;
+        Frame tenth = frames.get(9);
+        return tenth.hasSecondRoll() || tenth.isStrike();
+    }git
 
     public List<Frame> getFrames() { return List.copyOf(frames); }
 }

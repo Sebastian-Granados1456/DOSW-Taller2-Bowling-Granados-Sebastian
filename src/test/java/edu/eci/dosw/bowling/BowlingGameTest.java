@@ -40,7 +40,7 @@ public class BowlingGameTest {
     @DisplayName("roll() despues de terminar el juego lanza IllegalStateException")
     void rollAfterGameComplete_throwsException() {
         BowlingGame game = new BowlingGame();
-        for (int i = 0; i < 10; i++) game.roll(0);
+        for (int i = 0; i < 20; i++) game.roll(0);
         assertThrows(IllegalStateException.class, () -> game.roll(0));
     }
 

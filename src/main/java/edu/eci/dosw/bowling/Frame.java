@@ -4,19 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Frame {
-    private List<Frame> frame;
-    private final int pins;
+    private int firstRoll;
+    private Integer secondRoll;
 
-    public Frame(int pins) {
-        this.pins = pins;
+    public Frame(int firstRoll) {
+        this.firstRoll = firstRoll;
+    }
 
+    public void addSecondRoll(int pins) {
+        this.secondRoll = pins;
+    }
+
+    public int getPins() {
+        return firstRoll + (secondRoll != null ? secondRoll : 0);
     }
 
     public boolean isStrike() {
-        return pins == 10;
+        return firstRoll == 10;
     }
 
-    public int getPins(){
-        return pins;
+    public boolean isSpare() {
+        return secondRoll != null && firstRoll + secondRoll == 10;
+    }
+
+    public boolean hasSecondRoll() {
+        return secondRoll != null;
     }
 }
