@@ -73,5 +73,12 @@ public class BowlingGameTest {
         });
     }
 
+    @Test
+    @DisplayName("score() antes de completar el juego lanza IllegalStateException")
+    void scoreBeforeGameComplete_throwsException() {
+        BowlingGame game = new BowlingGame();
+        game.roll(5);
+        assertThrows(IllegalStateException.class, game::score);
+    }
 
 }

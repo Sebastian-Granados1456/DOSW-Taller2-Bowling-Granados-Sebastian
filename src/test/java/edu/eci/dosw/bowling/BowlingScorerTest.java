@@ -93,5 +93,4 @@ class BowlingScorerTest {
         BowlingScorer scorer = new BowlingScorer();
         assertEquals(300, scorer.calculate(game.getFrames()));
     }
-
 }
