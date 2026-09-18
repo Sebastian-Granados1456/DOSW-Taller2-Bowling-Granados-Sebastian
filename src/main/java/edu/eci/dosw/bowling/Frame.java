@@ -42,4 +42,12 @@ public class Frame {
     public boolean hasThirdRoll() {
         return thirdRoll != null;
     }
+
+    public int getFirstRollValue() {
+        return firstRoll;
+    }
+
+    public int getSecondRollValue() {
+        return secondRoll != null ? secondRoll : 0;
+    }
 }
