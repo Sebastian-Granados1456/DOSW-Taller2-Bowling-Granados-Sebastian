@@ -1,7 +1,17 @@
 package edu.eci.dosw.bowling;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Frame {
+    private List<Frame> frame;
+    private final int pins;
+
+    public Frame(int pins) {
+        this.pins = pins;
+
+    }
     public int getPins(){
-        return 0;
+        return pins;
     }
 }
