@@ -6,6 +6,7 @@ import java.util.List;
 public class Frame {
     private int firstRoll;
     private Integer secondRoll;
+    private Integer thirdRoll;
 
     public Frame(int firstRoll) {
         this.firstRoll = firstRoll;
@@ -15,8 +16,15 @@ public class Frame {
         this.secondRoll = pins;
     }
 
+    public void addThirdRoll(int pins) {
+        this.thirdRoll = pins;
+    }
+
     public int getPins() {
-        return firstRoll + (secondRoll != null ? secondRoll : 0);
+        int total = firstRoll;
+        if (secondRoll != null) total += secondRoll;
+        if (thirdRoll != null) total += thirdRoll;
+        return total;
     }
 
     public boolean isStrike() {
@@ -29,5 +37,9 @@ public class Frame {
 
     public boolean hasSecondRoll() {
         return secondRoll != null;
+    }
+
+    public boolean hasThirdRoll() {
+        return thirdRoll != null;
     }
 }
