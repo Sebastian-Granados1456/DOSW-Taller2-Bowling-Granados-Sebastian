@@ -69,4 +69,18 @@ class BowlingScorerTest {
         BowlingScorer scorer = new BowlingScorer();
         assertEquals(51, scorer.calculate(game.getFrames()));
     }
+
+    @Test
+    @DisplayName("Todos spares mas ultimo tiro de 5 - score debe ser 150")
+    void allSpares_scoresCorrectly() {
+        BowlingGame game = new BowlingGame();
+        for (int i = 0; i < 10; i++) {
+            game.roll(5);
+            game.roll(5);
+        }
+        game.roll(5);
+
+        BowlingScorer scorer = new BowlingScorer();
+        assertEquals(150, scorer.calculate(game.getFrames()));
+    }
 }
