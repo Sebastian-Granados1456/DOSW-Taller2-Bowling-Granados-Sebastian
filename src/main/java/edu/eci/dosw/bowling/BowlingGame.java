@@ -20,10 +20,16 @@ public class BowlingGame {
     /** Registra pinos derribados. Lanza IllegalArgumentException si pines > 10.
      *  Lanza IllegalStateException si el juego ya terminó. */
     public void roll(int pins) {
-        frames.add(new Frame(pins));
         if (pins < 0 || pins > 10) {
             throw new IllegalArgumentException("Los pines deben estar entre 0 y 10");
         }
+        if (!frames.isEmpty()) {
+            Frame last = frames.get(frames.size() - 1);
+            if (last.getPins() + pins > 10 && last.getPins() < 10) {
+                throw new IllegalArgumentException("La suma del frame no puede superar 10");
+            }
+        }
+        frames.add(new Frame(pins));
     }
 
     /** Puntaje total. Lanza IllegalStateException si el juego no está completo. */
