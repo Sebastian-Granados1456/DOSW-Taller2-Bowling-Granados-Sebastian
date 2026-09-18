@@ -51,4 +51,13 @@ public class BowlingGameTest {
         game.roll(10);
         assertTrue(game.getFrames().get(0).isStrike());
     }
+
+    @Test
+    @DisplayName("roll(5) + roll(5) marca el frame como spare")
+    void rollSpare_marksFrameAsSpare() {
+        BowlingGame game = new BowlingGame();
+        game.roll(5);
+        game.roll(5);
+        assertTrue(game.getFrames().get(0).isSpare());
+    }
 }
